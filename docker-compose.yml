@@ -1,0 +1,13 @@
+version: "3.4"
+services:
+  omnigen:
+    build: .
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    volumes:
+      - ./sample/:/etc/config/
+      - ./omni_slo_generator/:/app/omni_slo_generator/
+    environment:
+      OMNI_SLO_GENERATOR_SLO_GCS_BUCKET: heu-infra-slos-prod
+      GOOGLE_APPLICATION_CREDENTIALS: /etc/config/credentials.json
