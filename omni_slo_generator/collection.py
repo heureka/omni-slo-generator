@@ -26,7 +26,7 @@ def collect_from_gcs_bucket(gcs_bucket):
     slos = []
     blobs: list[GCS.Blob] = GCS.Client().list_blobs(gcs_bucket)
     for blob in blobs:
-        if ".yaml" in blob.name:
+        if ".yaml" in blob.name or '.yml' in blob.name:
             slos.append(download_blob(blob))
 
     logging.debug(f"Filtered through blobs and {len(slos)} remain")
